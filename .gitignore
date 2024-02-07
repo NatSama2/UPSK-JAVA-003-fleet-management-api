@@ -1,0 +1,10 @@
+# Archivos y directorios a ignorar
+
+node_modules/
+package-lock.json
+.env
+.vscode/
+
+# Librerías y dependencias
+lib/
+libs/
