@@ -1,6 +1,8 @@
 package com.fleetmanagement.demo.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Column;
@@ -9,19 +11,20 @@ import javax.persistence.Column;
 
 @Entity
 @Table(name = "taxis")
-public class Taxi{
+public class Taxi {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "plate")
     private String plate;
 
-    public int getId() {
+    public Long getId() {
         return id;
     } //son métodos de acceso (getters) para los atributos id y plate, respectivamente.
 
-    public void setId(int id) { // son métodos de modificación (setters) para los atributos id y plate, respectivamente.
+    public void setId(Long id) { // son métodos de modificación (setters) para los atributos id y plate, respectivamente.
         this.id = id;
     }
 
