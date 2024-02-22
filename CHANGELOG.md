@@ -25,13 +25,12 @@
 
 --- 
 
-## <1.0.0> - <2024-02-07>
+## <1.0.0> - <2024-02-13>
 
 ### Sprint 2 learnings
 
 - Estudiar de los endpoint
 - Estudiar sobre Sql.
-- 
 
 ### Added
 
@@ -44,10 +43,37 @@
 
 ### Fixed
 
-- Aun no hay bugs que solucionar.
+- No funciona la configuración de swagger y debo verlo con postman.
 
 ### Removed
 
 - Aun no hay funcionalidades eliminadas.
 
 --- 
+
+## <1.0.0> - <2024-02-13>
+
+### Sprint 3 learnings
+
+- Empezar test unitarios de historia 2
+- Estudiar sobre test y empezar historia 5
+
+### Added
+
+- Hacer endpoint de trajerctory
+- Corregi y agregue swagger en archivo pom.xml y en endpoint de taxis
+
+### Changed
+
+- Cambie versiones de swagger y de java en archivo pom. 
+
+### Fixed
+
+- Arreglado swagger.
+
+### Removed
+
+- Aun no hay funcionalidades eliminadas.
+
+--- 
+
