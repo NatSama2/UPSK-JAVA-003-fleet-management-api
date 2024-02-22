@@ -2,6 +2,13 @@ package com.fleetmanagement.demo.controller;
 
 import com.fleetmanagement.demo.model.Taxi; 
 import com.fleetmanagement.demo.service.TaxiService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,23 +20,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+//import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/taxis")
-public class TaxiController {
+@RequestMapping("/api")
+@Tag(name = "Taxis", description = "Colección de endpoints para obtener información de los taxis")
 
+public class TaxiController {
     @Autowired
     private TaxiService taxiService;
 
-    @GetMapping
-    public ResponseEntity<Object> getAllTaxis(@PageableDefault(size = 10) Pageable pageable) {
-        Map<String, Object> map = new HashMap<>();
+    @GetMapping(value = "/taxis")
+    @Operation(summary = "Obtiene todos los taxis")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = Page.class))
+            }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })})
 
+    public ResponseEntity<Object> get(
+            @Parameter(hidden = false) @PageableDefault(size = 10, page = 1) Pageable pageable
+    ){
+        Map<String, Object> map = new HashMap<String, Object>();
         try {
-            Page<Taxi> taxis = taxiService.findAll(pageable);
-            return new ResponseEntity<>(taxis, HttpStatus.OK);
-        } catch (Exception e) {
+            Page<Taxi> list = taxiService.findAll(pageable);
+            return new ResponseEntity<Object>(list, HttpStatus.OK);
+        }
+        catch (Exception e){
             map.put("message", e.getMessage());
             return new ResponseEntity<>(map, HttpStatus.INTERNAL_SERVER_ERROR);
         }

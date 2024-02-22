@@ -2,21 +2,19 @@ package com.fleetmanagement.demo.modelTest;
 
 import com.fleetmanagement.demo.model.Taxi;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-public class TaxiTest {
-
+import static org.junit.jupiter.api.Assertions.*;
+@SpringBootTest
+class TaxiTest {
     @Test
-    public void testSetAndGetId() {
-        Taxi taxi = new Taxi();
-
-        // Usar un valor de tipo Long para setId
-        Long idValue = 1L;
-        taxi.setId(idValue);
-
-        // Verificar que getId devuelve el valor correcto
-        assertEquals(idValue, taxi.getId());
-    }
+public void createTaxiSuccess(){
+Taxi taxi = new Taxi();
+taxi.setId(20);
+taxi.setPlate("1254a5");
+        Assertions.assertEquals(20, taxi.getId());
+        Assertions.assertEquals("1254a5", taxi.getPlate());
+}
 }
