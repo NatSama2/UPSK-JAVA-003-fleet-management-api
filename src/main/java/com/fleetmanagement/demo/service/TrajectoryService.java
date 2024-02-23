@@ -3,8 +3,9 @@ package com.fleetmanagement.demo.service;
 import com.fleetmanagement.demo.model.Trajectory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 import java.time.LocalDateTime;
 
 public interface TrajectoryService {
-    Page<Trajectory> findByTaxiIdAndDateGreaterThanEqual(int taxiId, LocalDateTime date, Pageable pageable);
+    Page<Trajectory> getTrajectoryHistory(Long taxiId, LocalDateTime date, Pageable pageable);
 }

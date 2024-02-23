@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 
 @Service
@@ -14,12 +15,14 @@ public class TrajectoryServiceImpl implements TrajectoryService {
     @Autowired
     private TrajectoryRepository trajectoryRepository;
 
-    public TrajectoryServiceImpl(TrajectoryRepository trajectoryRepository) {
-        this.trajectoryRepository = trajectoryRepository;
-    }
-
     @Override
-    public Page<Trajectory> findByTaxiIdAndDateGreaterThanEqual(int taxiId, LocalDateTime date, Pageable pageable) {
-        return trajectoryRepository.findByTaxiIdAndDateGreaterThanEqual(taxiId, date, pageable);
+    public Page<Trajectory> getTrajectoryHistory(Long taxiId, LocalDateTime date, Pageable pageable) {
+        System.out.println("Searching trajectories for taxiId: " + taxiId + ", date: " + date);
+
+        Page<Trajectory> result = trajectoryRepository.findByTaxi_IdAndDate(taxiId, date, pageable);
+
+        System.out.println("Found " + result.getTotalElements() + " trajectories.");
+
+        return result;
     }
 }
