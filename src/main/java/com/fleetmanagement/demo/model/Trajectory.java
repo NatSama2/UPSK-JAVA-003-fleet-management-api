@@ -2,47 +2,57 @@ package com.fleetmanagement.demo.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "trajectories")
 public class Trajectory {
+
     @Id
-    @Column(name="id")
-    private int id;
-    @Column(name = "taxi_id")
-    private int taxiId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "taxi_id", nullable = false)
+    private Taxi taxi;
+
     @Column(name = "date")
-    private LocalDateTime date;
+    private Date date;
+
     @Column(name = "latitude")
     private Double latitude;
+
     @Column(name = "longitude")
     private Double longitude;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getTaxiId() {
-        return taxiId;
+    public Taxi getTaxi() {
+        return taxi;
     }
 
-    public void setTaxiId(int taxiId) {
-        this.taxiId= taxiId;
+    public void setTaxi(Taxi taxi) {
+        this.taxi = taxi;
     }
 
-    public LocalDateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
