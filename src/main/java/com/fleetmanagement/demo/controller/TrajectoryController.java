@@ -11,15 +11,15 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.format.annotation.DateTimeFormat;
+//import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+//import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+//import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/trajectory")
@@ -39,12 +39,12 @@ public class TrajectoryController {
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })})
     public ResponseEntity<Object> getTrajectoryHistory(
             @PathVariable Long id,
-            @RequestParam(value = "date", required = true) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
+            @RequestParam(value = "date", required = true) String date,
             Pageable pageable) {
         Map<String, Object> map = new HashMap<>();
         try {
-            LocalDateTime dateSearch = date.atStartOfDay();
-            Page<Trajectory> list = trajectoryService.getTrajectoryHistory(id, dateSearch, pageable);
+            //LocalDateTime dateSearch = date.atStartOfDay();
+            Page<Trajectory> list = trajectoryService.getTrajectoryHistory(id, date, pageable);
             return new ResponseEntity<>(list, HttpStatus.OK);
         } catch (Exception e) {
             map.put("message", e.getMessage());
