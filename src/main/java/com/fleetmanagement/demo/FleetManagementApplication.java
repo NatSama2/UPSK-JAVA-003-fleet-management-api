@@ -9,5 +9,5 @@ public class FleetManagementApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FleetManagementApplication.class, args);
 	}
-
+  // http://localhost:8080/swagger-ui/index.html
 }
