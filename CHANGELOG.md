@@ -1,15 +1,16 @@
-## <1.0.0> - <2024-02-07>
+## <1.0.0> - <2024-02-13>
 
 ### Sprint 1 learnings
 
 - Leer y entender Readme.
 - Estudiar sobre Sql.
-- 
+- Ver video para descargar las dependencias del proyecto
+- Hacer el proyecto en vercel
 
 ### Added
 
 - Se agregan Tablas en pgAdmin 4.
-- 
+- Fork del repositorio
 
 ### Changed
 
@@ -25,7 +26,8 @@
 
 --- 
 
-## <1.0.0> - <2024-02-13>
+
+## <1.0.0> - <2024-02-20>
 
 ### Sprint 2 learnings
 
@@ -51,12 +53,13 @@
 
 --- 
 
-## <1.0.0> - <2024-02-13>
+
+## <1.0.0> - <2024-02-27>
 
 ### Sprint 3 learnings
 
 - Empezar test unitarios de historia 2
-- Estudiar sobre test y empezar historia 5
+- Estudiar sobre test y empezar historia 3
 
 ### Added
 
@@ -70,6 +73,31 @@
 ### Fixed
 
 - Arreglado swagger.
+
+### Removed
+
+- Aun no hay funcionalidades eliminadas.
+
+--- 
+
+
+## <1.0.0> - <2024-03-05>
+
+### Sprint 4 learnings
+
+- Se trabajo en HU3 y test de HU2
+
+### Added
+
+- Se agrega Query para TrajectoryRepository
+
+### Changed
+
+- Cambie el Query de TrajectoryRepository
+
+### Fixed
+
+- Arreglado Test de HU2
 
 ### Removed
 
