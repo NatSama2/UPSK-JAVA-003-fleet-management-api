@@ -54,14 +54,12 @@ public class TrajectoryController {
             @ApiResponse(responseCode = "200", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Page.class))
             }),
-            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
-            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) })})
-    public ResponseEntity<Object> getLastLocations(
-            @RequestParam(value = "taxiId", required = true) Long taxiId,
-            Pageable pageable) {
+            @ApiResponse(responseCode = "404", content = {@Content(schema = @Schema())}),
+            @ApiResponse(responseCode = "500", content = {@Content(schema = @Schema())})})
+    public ResponseEntity<Object> getLastLocations(Pageable pageable) {
         Map<String, Object> map = new HashMap<>();
         try {
-            Page<Trajectory> lastLocations = trajectoryService.getLastLocations(taxiId, pageable);
+            Page<Trajectory> lastLocations = trajectoryService.getLastLocations(pageable);
             return new ResponseEntity<>(lastLocations, HttpStatus.OK);
         } catch (Exception e) {
             map.put("message", e.getMessage());

@@ -9,5 +9,5 @@ import org.springframework.data.domain.Pageable;
 public interface TrajectoryService {
     Page<Trajectory> getTrajectoryHistory(Long taxiId, String date, Pageable pageable);
 
-    Page<Trajectory> getLastLocations(Long taxiId, Pageable pageable);
+    Page<Trajectory> getLastLocations(Pageable pageable);
 }
