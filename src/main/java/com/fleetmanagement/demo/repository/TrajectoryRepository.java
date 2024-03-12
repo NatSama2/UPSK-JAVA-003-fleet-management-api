@@ -5,7 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+//import org.springframework.data.repository.query.Param;
+//import org.springframework.web.bind.annotation.RequestParam;
 
 //import java.time.LocalDateTime;
 
@@ -15,6 +16,9 @@ public interface TrajectoryRepository extends JpaRepository<Trajectory, Long> {
     @Query (value= "SELECT * FROM trajectories t WHERE taxi_id = :taxiId AND TO_CHAR(date, 'dd-MM-yyyy') = :date", nativeQuery = true)
     Page<Trajectory> findByTaxi_Id(Long taxiId, String date, Pageable pageable);
 
-    @Query("SELECT t FROM Trajectory t WHERE t.taxi.id = :taxiId AND (t.taxi.id, t.date) IN (SELECT t2.taxi.id, MAX(t2.date) FROM Trajectory t2 WHERE t2.taxi.id = :taxiId GROUP BY t2.taxi.id)")
-    Page<Trajectory> findLastLocations(@Param("taxiId") Long taxiId, Pageable pageable);
+    @Query(value = "SELECT DISTINCT ON (t.taxi_id) t.* FROM trajectories t " +
+    "ORDER BY t.taxi_id, t.date DESC",
+    countQuery = "SELECT COUNT(DISTINCT taxi_id) FROM trajectories",
+    nativeQuery = true)
+    Page<Trajectory> findLastLocations(Pageable pageable);
 }

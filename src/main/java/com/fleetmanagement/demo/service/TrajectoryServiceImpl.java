@@ -25,13 +25,13 @@ public class TrajectoryServiceImpl implements TrajectoryService {
     }
 
     @Override
-    public Page<Trajectory> getLastLocations(Long taxiId, Pageable pageable) {
-        System.out.println("Searching last location for taxiId: " + taxiId);
-
-        Page<Trajectory> result = trajectoryRepository.findLastLocations(taxiId, pageable);
-
+    public Page<Trajectory> getLastLocations(Pageable pageable) {
+        System.out.println("Searching last locations for all taxis");
+    
+        Page<Trajectory> result = trajectoryRepository.findLastLocations(pageable);
+    
         System.out.println("Found " + result.getTotalElements() + " last locations.");
-
+    
         return result;
     }
 }
